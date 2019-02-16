@@ -4,7 +4,7 @@ int bianco = 9;
 int verde = 8;
 int DURATA = 0;
 int i = 0;
-int randNumber;
+int randNumero;
 int cicli;
 String serial;
 
@@ -16,12 +16,13 @@ void setup() {
   pinMode(giallo, OUTPUT);
   pinMode(bianco, OUTPUT);
   pinMode(verde, OUTPUT);
+  richiesta();
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   if(i == cicli){
-    richiesta();
+    genera();
   }
   digitalWrite(rosso, HIGH);
   delay(DURATA);
@@ -47,8 +48,11 @@ void richiesta(){
       cicli = serial.toInt();
       i = 0;
   }
-  Serial.println("Durata del led generata a random:");
-  randNumber = random(1, 5);
-  Serial.println(randNumber);
-  DURATA = randNumber*1000;
+  genera();
+}
+void genera(){
+  Serial.println("Durata del led generata a random in secondi:");
+  randNumero = random(0, 5);
+  Serial.println(randNumero);
+  DURATA = randNumero*1000;
 }

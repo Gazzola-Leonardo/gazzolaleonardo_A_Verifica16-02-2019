@@ -22,11 +22,12 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   if(i == cicli){
-    genera();
+    genera(); 
+    i = 0;
   }
-  digitalWrite(rosso, HIGH);
-  delay(DURATA);
-  digitalWrite(rosso, LOW);
+  digitalWrite(rosso, HIGH); //accensione led
+  delay(DURATA); //durata accensione led
+  digitalWrite(rosso, LOW); //spegnimento led
   digitalWrite(giallo, HIGH);
   delay(DURATA*2);
   digitalWrite(giallo, LOW);
@@ -36,10 +37,11 @@ void loop() {
   digitalWrite(verde, HIGH);
   delay(DURATA*3);
   digitalWrite(verde, LOW);
-  i++;
+  i++; //incremento variabile dei cicli
 }
 
 void richiesta(){
+  //viene richiesto in input il numero di cicli
   Serial.println("Inserire dopo quanti dopo quanti CICLI il programma deve ricominciare dall’inizio:");
   while(Serial.available() == 0);
     if (Serial.available() > 0){
@@ -51,7 +53,8 @@ void richiesta(){
   genera();
 }
 void genera(){
-  Serial.println("Durata del led generata a random in secondi:");
+  //viene generata la durata in secondi di accensione dei led
+  Serial.println("Durata in secondi di accensione dei led:");
   randNumero = random(0, 5);
   Serial.println(randNumero);
   DURATA = randNumero*1000;
